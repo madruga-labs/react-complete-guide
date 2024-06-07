@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { styled } from "styled-components";
+import Button from "./Button";
+import CustomInput from "./Input";
 
 const ControlContainer = styled.div`
   display: flex;
@@ -52,32 +54,26 @@ export default function AuthInputs() {
   return (
     <div id="auth-inputs">
       <ControlContainer>
-        <p>
-          <Label $invalid={emailNotValid}>Email</Label>
-          <Input
-            type="email"
-            $invalid={emailNotValid}
-            onChange={(event) => handleInputChange("email", event.target.value)}
-          />
-        </p>
-        <p>
-          <Label $invalid={passwordNotValid}>Password</Label>
-          <Input
-            type="password"
-            $invalid={passwordNotValid}
-            onChange={(event) =>
-              handleInputChange("password", event.target.value)
-            }
-          />
-        </p>
+        <CustomInput
+          label="Email"
+          type="email"
+          invalid={emailNotValid}
+          onChange={(event) => handleInputChange("email", event.target.value)}
+        />
+        <CustomInput
+          label="Password"
+          type="password"
+          $invalid={passwordNotValid}
+          onChange={(event) =>
+            handleInputChange("password", event.target.value)
+          }
+        />
       </ControlContainer>
       <div className="actions">
         <button type="button" className="text-button">
           Create a new account
         </button>
-        <button className="button" onClick={handleLogin}>
-          Sign In
-        </button>
+        <Button onClick={handleLogin}>Sign In</Button>
       </div>
     </div>
   );
